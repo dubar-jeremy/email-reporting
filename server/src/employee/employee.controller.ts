@@ -15,10 +15,9 @@ export class EmployeeController {
 
   @Post()
   async create(@Body() createEmployeeDto: CreateEmployeeDto) {
-
-    if(await this.employeeService.hasAccount(createEmployeeDto.email)) {
-      throw new ConflictException('Employee already has an account')
-    };
+    if (await this.employeeService.hasAccount(createEmployeeDto.email)) {
+      throw new ConflictException('Employee already has an account');
+    }
 
     return this.employeeService.create(createEmployeeDto);
   }

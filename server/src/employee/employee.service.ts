@@ -10,7 +10,7 @@ export class EmployeeService {
   constructor(
     @InjectRepository(Employee)
     private employeeRepository: Repository<Employee>,
-    
+
     @InjectRepository(Manager)
     private managerRepository: Repository<Manager>,
   ) {}
@@ -21,8 +21,8 @@ export class EmployeeService {
 
   /**
    * Add manager to employee
-   * @param getEmployeeDto 
-   * @param getManagerDto 
+   * @param getEmployeeDto
+   * @param getManagerDto
    * @returns Promise<Employee>
    */
   async addManager(getEmployeeDto: GetEmployeeDto, getManagerDto: GetManagerDto): Promise<Employee> {
@@ -53,7 +53,7 @@ export class EmployeeService {
 
   /**
    * Check if employee has an account
-   * @param getEmployeeDto 
+   * @param getEmployeeDto
    * @returns Promise<boolean>
    */
   async hasAccount(email: string): Promise<boolean> {
@@ -63,11 +63,10 @@ export class EmployeeService {
       },
     });
 
-    if(employee) {
+    if (employee) {
       return true;
     }
 
     return false;
   }
-
 }
