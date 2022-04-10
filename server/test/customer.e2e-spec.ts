@@ -6,7 +6,9 @@ import { AppModule } from 'src/app.module';
 
 describe('Customer', () => {
   let app: INestApplication;
-  const customerService = { findAll: () => ['test'] };
+  const customerService = {
+    findAll: () => ['test'],
+  };
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -21,10 +23,7 @@ describe('Customer', () => {
   });
 
   it(`/GET customers`, () => {
-    return request(app.getHttpServer())
-      .get('/customer')
-      .expect(200)
-      .expect(customerService.findAll());
+    return request(app.getHttpServer()).get('/customer').expect(200).expect(customerService.findAll());
   });
 
   afterAll(async () => {

@@ -12,7 +12,9 @@ export class Manager {
   @Column()
   firstName: string;
 
-  @Column({ unique: true })
+  @Column({
+    unique: true,
+  })
   email: string;
 
   @OneToMany(() => Employee, (employee) => employee.manager)

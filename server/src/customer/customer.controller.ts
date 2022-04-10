@@ -9,7 +9,10 @@ export class CustomerController {
   constructor(private customerService: CustomerService) {}
 
   @Post()
-  create(@Body() customer: CreateCustomerDto) {
+  create(
+    @Body()
+    customer: CreateCustomerDto,
+  ) {
     return this.customerService.create(customer);
   }
 
