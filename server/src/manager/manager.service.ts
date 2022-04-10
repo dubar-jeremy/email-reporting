@@ -6,10 +6,7 @@ import { Manager } from './manager.entity';
 
 @Injectable()
 export class ManagerService {
-  constructor(
-    @InjectRepository(Manager)
-    private managerRepository: Repository<Manager>,
-  ) {}
+  constructor(@InjectRepository(Manager) private managerRepository: Repository<Manager>) {}
 
   create(manager: CreateManagerDto): Promise<Manager> {
     return this.managerRepository.save(manager);

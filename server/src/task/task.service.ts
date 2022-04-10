@@ -15,12 +15,11 @@ export class TaskService {
     private reportingRepository: Repository<Reporting>,
   ) {}
 
-  async create(
-    findReportingDto: FindReportingDto,
-    createTaskDto: CreateTaskDto,
-  ): Promise<Task> {
+  async create(findReportingDto: FindReportingDto, createTaskDto: CreateTaskDto): Promise<Task> {
     const reporting = await this.reportingRepository.findOne({
-      where: { id: findReportingDto },
+      where: {
+        id: findReportingDto,
+      },
     });
 
     const task = this.taskRepository.create(createTaskDto);

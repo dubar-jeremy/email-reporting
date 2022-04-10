@@ -16,7 +16,9 @@ export class ReportingService {
 
   async create(createReportingDto: CreateReportingDto): Promise<Reporting> {
     const employeeReporting = await this.employeeRepository.findOne({
-      where: { id: createReportingDto.employee },
+      where: {
+        id: createReportingDto.employee,
+      },
     });
 
     const reporting = this.reportingRepository.create({

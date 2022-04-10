@@ -1,12 +1,6 @@
 import { Manager } from 'src/manager/manager.entity';
 import { Reporting } from 'src/reporting/reporting.entity';
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  OneToMany,
-  ManyToOne,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Employee {
@@ -19,7 +13,9 @@ export class Employee {
   @Column()
   firstName: string;
 
-  @Column({ unique: true })
+  @Column({
+    unique: true,
+  })
   email: string;
 
   @Column()

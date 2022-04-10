@@ -1,13 +1,6 @@
 import { Customer } from 'src/customer/customer.entity';
 import { Reporting } from 'src/reporting/reporting.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum TypeFormat {
   INSTALL = 'install',
