@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Employee } from './employee.entity';
 import { CreateEmployeeDto, GetEmployeeDto, GetManagerDto } from './dto/employee.dto';
 import { Manager } from 'src/manager/manager.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class EmployeeService {
@@ -16,15 +17,13 @@ export class EmployeeService {
   ) {}
 
   async create(createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
+
+    createEmployeeDto.password = bcrypt.hashSync(createEmployeeDto.password, parseInt(process.env.SALT_OR_ROUND));
+
     return this.employeeRepository.save(createEmployeeDto);
   }
 
-  /**
-   * Add manager to employee
-   * @param getEmployeeDto
-   * @param getManagerDto
-   * @returns Promise<Employee>
-   */
+
   async addManager(getEmployeeDto: GetEmployeeDto, getManagerDto: GetManagerDto): Promise<Employee> {
     const employee = await this.employeeRepository.findOne({
       where: {
@@ -43,19 +42,12 @@ export class EmployeeService {
     return this.employeeRepository.save(employee);
   }
 
-  /**
-   * Get all employees
-   * @returns Promise<Employee[]>
-   */
-  find(): Promise<Employee[]> {
+
+  getAllEmployees(): Promise<Employee[]> {
     return this.employeeRepository.find();
   }
 
-  /**
-   * Check if employee has an account
-   * @param getEmployeeDto
-   * @returns Promise<boolean>
-   */
+
   async hasAccount(email: string): Promise<boolean> {
     const employee = await this.employeeRepository.findOne({
       where: {

@@ -1,6 +1,7 @@
 import { Body, ConflictException, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateEmployeeDto, GetEmployeeDto, GetManagerDto } from './dto/employee.dto';
+import { Employee } from './employee.entity';
 import { EmployeeService } from './employee.service';
 
 @ApiTags('employee')
@@ -8,13 +9,15 @@ import { EmployeeService } from './employee.service';
 export class EmployeeController {
   constructor(private employeeService: EmployeeService) {}
 
+  
   @Post(':employeeId/manager/:managerId')
-  addManager(@Param('employeeId') getEmployeeDto: GetEmployeeDto, @Param('managerId') getManagerDto: GetManagerDto) {
+  addManager(@Param('employeeId') getEmployeeDto: GetEmployeeDto, @Param('managerId') getManagerDto: GetManagerDto): Promise<Employee> {
     return this.employeeService.addManager(getEmployeeDto, getManagerDto);
   }
 
+
   @Post()
-  async create(@Body() createEmployeeDto: CreateEmployeeDto) {
+  async createEmployee(@Body() createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
     if (await this.employeeService.hasAccount(createEmployeeDto.email)) {
       throw new ConflictException('Employee already has an account');
     }
@@ -22,8 +25,9 @@ export class EmployeeController {
     return this.employeeService.create(createEmployeeDto);
   }
 
+
   @Get()
-  findAll() {
-    return this.employeeService.find();
+  getAllEmployees(): Promise<Employee[]> {
+    return this.employeeService.getAllEmployees();
   }
 }
