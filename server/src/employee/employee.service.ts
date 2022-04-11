@@ -17,7 +17,6 @@ export class EmployeeService {
   ) {}
 
   async create(createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
-
     createEmployeeDto.password = bcrypt.hashSync(createEmployeeDto.password, parseInt(process.env.SALT_OR_ROUND));
 
     return this.employeeRepository.save(createEmployeeDto);
@@ -43,10 +42,9 @@ export class EmployeeService {
   }
 
 
-  getAllEmployees(): Promise<Employee[]> {
+  async getAllEmployees(): Promise<Employee[]> {
     return this.employeeRepository.find();
   }
-
 
   async hasAccount(email: string): Promise<boolean> {
     const employee = await this.employeeRepository.findOne({

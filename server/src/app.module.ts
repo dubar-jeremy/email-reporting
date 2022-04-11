@@ -8,6 +8,7 @@ import { CustomerModule } from './customer/customer.module';
 import { EmployeeModule } from './employee/employee.module';
 import { ReportingModule } from './reporting/reporting.module';
 import { TaskModule } from './task/task.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { TaskModule } from './task/task.module';
     ReportingModule,
     CustomerModule,
     TaskModule,
+    AuthenticationModule,
   ],
 })
 export class AppModule {}

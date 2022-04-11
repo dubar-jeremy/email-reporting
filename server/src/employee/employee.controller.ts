@@ -1,4 +1,5 @@
-import { Body, ConflictException, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, ConflictException, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateEmployeeDto, GetEmployeeDto, GetManagerDto } from './dto/employee.dto';
 import { Employee } from './employee.entity';
