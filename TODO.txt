@@ -1,0 +1,4 @@
+- Uniformiser les noms des methodes (voir convention de nommage)
+- Gérer proprement les erreurs
+- Un service = une responsabilité 
+- Une 
