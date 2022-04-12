@@ -1,7 +1,8 @@
-import { Body, ConflictException, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Body, ConflictException, Controller, Get, HttpException, NotFoundException, Param, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateEmployeeDto, GetEmployeeDto, GetManagerDto } from './dto/employee.dto';
+import { throwError } from 'rxjs';
+import { EntityNotFoundError } from 'typeorm';
+import {AddManagerDto, CreateEmployeeDto, GetEmployeeParamsDto } from './dto/employee.dto';
 import { Employee } from './employee.entity';
 import { EmployeeService } from './employee.service';
 
@@ -9,13 +10,6 @@ import { EmployeeService } from './employee.service';
 @Controller('employee')
 export class EmployeeController {
   constructor(private employeeService: EmployeeService) {}
-
-  
-  @Post(':employeeId/manager/:managerId')
-  addManager(@Param('employeeId') getEmployeeDto: GetEmployeeDto, @Param('managerId') getManagerDto: GetManagerDto): Promise<Employee> {
-    return this.employeeService.addManager(getEmployeeDto, getManagerDto);
-  }
-
 
   @Post()
   async createEmployee(@Body() createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
@@ -26,9 +20,17 @@ export class EmployeeController {
     return this.employeeService.create(createEmployeeDto);
   }
 
-
   @Get()
   getAllEmployees(): Promise<Employee[]> {
     return this.employeeService.getAllEmployees();
+  }
+
+  @Patch(':employeeId/manager')
+  async addManager(@Param() getEmployeeParamsDto: GetEmployeeParamsDto, @Body() addManagerDto: AddManagerDto) {
+    try {
+      return await this.employeeService.addManager(getEmployeeParamsDto.employeeId, addManagerDto.managerId);
+    }catch(error: any) {
+        return new NotFoundException
+    }
   }
 }

@@ -1,6 +1,6 @@
-import { IsEmail, IsNotEmpty, IsNumberString, IsString } from 'class-validator';
-import { Manager } from 'src/manager/manager.entity';
-import { Employee } from '../employee.entity';
+import { ParseIntPipe } from '@nestjs/common';
+import { Type } from 'class-transformer';
+import { IsEmail, IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateEmployeeDto {
   @IsNotEmpty()
@@ -19,16 +19,14 @@ export class CreateEmployeeDto {
   password: string;
 }
 
-export class GetManagerDto {
-  manager: Manager;
+export class GetEmployeeParamsDto {
+  @IsInt()
+  @Type(() => Number)
+  employeeId: number
 }
 
-export class GetEmployeeDto {
-  employee: Employee;
-}
-
-export class FindUserDto {
-  @IsNotEmpty()
-  @IsNumberString()
-  id: number;
+export class AddManagerDto {
+  @IsInt()
+  @Type(() => Number)
+  managerId: number;
 }
