@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Employee } from './employee.entity';
-import { CreateEmployeeDto, GetEmployeeDto, GetManagerDto } from './dto/employee.dto';
+import { CreateEmployeeDto } from './dto/employee.dto';
 import { Manager } from 'src/manager/manager.entity';
 import * as bcrypt from 'bcrypt';
+import { employeeExceptions } from './error/employee.error';
 
 @Injectable()
 export class EmployeeService {
@@ -23,22 +24,26 @@ export class EmployeeService {
   }
 
 
-  async addManager(getEmployeeDto: GetEmployeeDto, getManagerDto: GetManagerDto): Promise<Employee> {
-    const employee = await this.employeeRepository.findOne({
-      where: {
-        id: getEmployeeDto,
-      },
-    });
+  async addManager(employeeId: number, managerId: number): Promise<Employee> {
+      const employee = await this.employeeRepository.findOne({
+        where: {
+          id: employeeId
+        },
+      });
 
-    const manager = await this.managerRepository.findOne({
-      where: {
-        id: getManagerDto,
-      },
-    });
-
-    employee.manager = manager;
-
-    return this.employeeRepository.save(employee);
+      if(!employee){
+        throw new Error
+      }
+  
+      const manager = await this.managerRepository.findOne({
+        where: {
+          id: managerId,
+        },
+      });
+  
+      employee.manager = manager;
+  
+      return this.employeeRepository.save(employee);
   }
 
 
