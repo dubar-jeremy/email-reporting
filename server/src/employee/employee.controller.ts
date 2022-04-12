@@ -29,8 +29,8 @@ export class EmployeeController {
    */
   @Patch(':employeeId/manager')
   async addManager(
-    @Param() { employeeId: employeeId }: GetEmployeeByIdDto, 
-    @Body() { managerId: managerId }: AddManagerDto
+    @Param() { employeeId }: GetEmployeeByIdDto, 
+    @Body() { managerId }: AddManagerDto
     ): Promise<Employee> {
     try {
       const manager = await this.managerService.findOne(managerId);
