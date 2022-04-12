@@ -3,26 +3,37 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Employee } from 'src/employee/employee.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthenticationService {
-  constructor(@InjectRepository(Employee) private employeeRepository: Repository<Employee>) {}
+  constructor(
+    @InjectRepository(Employee) private employeeRepository: Repository<Employee>,  
+    // private jwtService: JwtService
+    ) {}
 
-  async validateUser(email: string, password: string): Promise<unknown> {
-    const user = await this.employeeRepository.findOne({
+  async validateUser(email: string, password: string): Promise<any> {
+    const employee = await this.employeeRepository.findOne({
       where: {
         email: email,
         },
     });
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = bcrypt.compare(password, employee.password);
 
-    if (user && passwordMatch) {
+    if (employee && passwordMatch) {
       // ??
-      const { password, ...result } = user;
+      const { password, ...result } = employee;
       return result;
     }
 
     return null;
   }
+
+  // async login(user: any) {
+  //   const payload = { username: user.username, sub: user.userId };
+  //   return {
+  //     access_token: this.jwtService.sign(payload),
+  //   };
+  // }
 }
