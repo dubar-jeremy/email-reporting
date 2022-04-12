@@ -18,8 +18,7 @@ export class CreateEmployeeDto {
   @IsNotEmpty()
   password: string;
 }
-
-export class GetEmployeeParamsDto {
+export class GetEmployeeByIdDto {
   @IsInt()
   @Type(() => Number)
   employeeId: number

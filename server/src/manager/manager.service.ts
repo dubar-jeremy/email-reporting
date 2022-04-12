@@ -15,4 +15,11 @@ export class ManagerService {
   findAll(): Promise<Manager[]> {
     return this.managerRepository.find();
   }
+
+  /**
+   * TODO: Throw error and handle it in the controller
+   */
+  findOne(id: number): Promise<Manager> {
+    return this.managerRepository.findOneOrFail(id);
+  }
 }

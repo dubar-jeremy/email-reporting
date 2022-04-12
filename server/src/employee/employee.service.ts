@@ -1,11 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Employee } from './employee.entity';
 import { CreateEmployeeDto } from './dto/employee.dto';
-import { Manager } from 'src/manager/manager.entity';
 import * as bcrypt from 'bcrypt';
-import { employeeExceptions } from './error/employee.error';
+import { ManagerService } from 'src/manager/manager.service';
+import { Manager } from 'src/manager/manager.entity';
 
 @Injectable()
 export class EmployeeService {
@@ -13,8 +13,7 @@ export class EmployeeService {
     @InjectRepository(Employee)
     private employeeRepository: Repository<Employee>,
 
-    @InjectRepository(Manager)
-    private managerRepository: Repository<Manager>,
+    private managerService: ManagerService,
   ) {}
 
   async create(createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
@@ -24,22 +23,7 @@ export class EmployeeService {
   }
 
 
-  async addManager(employeeId: number, managerId: number): Promise<Employee> {
-      const employee = await this.employeeRepository.findOne({
-        where: {
-          id: employeeId
-        },
-      });
-
-      if(!employee){
-        throw new Error
-      }
-  
-      const manager = await this.managerRepository.findOne({
-        where: {
-          id: managerId,
-        },
-      });
+  async addManager(employee: Employee, manager: Manager): Promise<Employee> {
   
       employee.manager = manager;
   
@@ -63,5 +47,16 @@ export class EmployeeService {
     }
 
     return false;
+  }
+
+  /**
+   * TODO: Throw error and handle it in the controller
+   */
+  async findOne(employeeId: number): Promise<Employee> {
+    return await this.employeeRepository.findOneOrFail({
+      where: {
+        id: employeeId,
+      },
+    });
   }
 }
