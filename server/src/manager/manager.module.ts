@@ -8,6 +8,6 @@ import { ManagerService } from './manager.service';
   imports: [TypeOrmModule.forFeature([Manager])],
   controllers: [ManagerController],
   providers: [ManagerService],
-  exports: [ManagerModule],
+  exports: [ManagerService]
 })
 export class ManagerModule {}

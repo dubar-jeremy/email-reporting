@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { GetEmployeeByIdDto } from 'src/employee/dto/employee.dto';
 import { EmployeeService } from 'src/employee/employee.service';
+import { CreateEmployeeReportingDo } from './dto/reporting.dto';
 import { ReportingService } from './reporting.service';
 
 @ApiTags('reporting')
@@ -9,15 +9,16 @@ import { ReportingService } from './reporting.service';
 export class ReportingController {
   constructor(private reportingService: ReportingService, private employeeService: EmployeeService) {}
 
-  /**
-   * TODO: handle error
-   */
   @Post()
-  async create(@Body() { employeeId: employeeId }: GetEmployeeByIdDto) {
+  async create(@Body() { employeeId }: CreateEmployeeReportingDo) {
+    try {
+      const employee = await this.employeeService.findOne(employeeId);
 
-    const employee = await this.employeeService.findOne(employeeId);
+      return this.reportingService.create(employee);
+    }catch (error: any){
+      throw new NotFoundException("Employee does not exists");
+    }
 
-    return this.reportingService.create(employee);
   }
 
   @Get()

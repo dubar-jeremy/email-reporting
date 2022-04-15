@@ -12,11 +12,13 @@ export class EmployeeController {
 
   @Post()
   async createEmployee(@Body() createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
-    if (await this.employeeService.hasAccount(createEmployeeDto.email)) {
-      throw new ConflictException('Employee already has an account');
+    try {
+      return await this.employeeService.create(createEmployeeDto);
+    }catch(error: any){
+      if(error.code === 'ER_DUP_ENTRY'){
+        throw new ConflictException('Employee already exists');
+       }
     }
-
-    return this.employeeService.create(createEmployeeDto);
   }
 
   @Get()
@@ -33,6 +35,7 @@ export class EmployeeController {
     @Body() { managerId }: AddManagerDto
     ): Promise<Employee> {
     try {
+      
       const manager = await this.managerService.findOne(managerId);
 
       const employee = await this.employeeService.findOne(employeeId);

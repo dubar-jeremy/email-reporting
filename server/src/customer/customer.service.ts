@@ -11,11 +11,17 @@ export class CustomerService {
     private customerRepository: Repository<Customer>,
   ) {}
 
-  create(createCustomerDto: CreateCustomerDto): Promise<Customer> {
-    return this.customerRepository.save(createCustomerDto);
+  async create(customer: string): Promise<Customer> {
+    return await this.customerRepository.save({ name: customer });
   }
 
   findAll(): Promise<Customer[]> {
     return this.customerRepository.find();
+  }
+
+  findOne(customerId): Promise<Customer> {
+    return this.customerRepository.findOneOrFail({
+      where: { id: customerId },
+    });
   }
 }
