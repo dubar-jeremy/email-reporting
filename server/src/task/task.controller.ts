@@ -18,13 +18,14 @@ export class TaskController {
      
      const customer = await this.customerService.findOne(createTaskDto.customerId);
 
-     const task = {
+     const newTask = {
         ...createTaskDto,
         reporting: reporting,
         customer: customer
      };
 
-      return await this.taskService.create(task);  
+      const task = await this.taskService.create(newTask);  
+      return await this.taskService.findOne(task.id);
     }catch(error){
       throw new NotFoundException(error.message);
     } 
