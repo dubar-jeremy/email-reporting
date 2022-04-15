@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, ConflictException, Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateManagerDto } from './dto/manager.dto';
 import { ManagerService } from './manager.service';
@@ -9,8 +9,14 @@ export class ManagerController {
   constructor(private managerService: ManagerService) {}
 
   @Post()
-  create(@Body() manager: CreateManagerDto) {
-    return this.managerService.create(manager);
+  async create(@Body() manager: CreateManagerDto) {
+    try {
+      return await this.managerService.create(manager);
+    }catch(error: any) {
+      if(error.code === 'ER_DUP_ENTRY'){
+        throw new ConflictException('Manager already exists');
+       }
+    }
   }
 
   @Get()

@@ -12,6 +12,6 @@ import { ManagerService } from 'src/manager/manager.service';
   imports: [TypeOrmModule.forFeature([Employee, Manager])],
   providers: [EmployeeService, LocalStrategy, AuthenticationService, ManagerService],
   controllers: [EmployeeController],
-  exports: [EmployeeModule, EmployeeService]
+  exports: [EmployeeService]
 })
 export class EmployeeModule {}

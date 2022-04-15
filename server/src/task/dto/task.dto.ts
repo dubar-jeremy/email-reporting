@@ -1,16 +1,11 @@
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
-import { Reporting } from 'src/reporting/reporting.entity';
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export enum TypeFormat {
-  INSTALL = 'install',
-  TMA = 'tma',
-  PROJECT = 'project',
-}
+
 
 export class CreateTaskDto {
   @IsNotEmpty()
   @IsString()
-  type: TypeFormat;
+  type: string;
 
   @IsNotEmpty()
   @IsString()
@@ -19,8 +14,12 @@ export class CreateTaskDto {
   @IsNotEmpty()
   @IsBoolean()
   completed: boolean;
-}
 
-export class FindReportingDto {
-  reporting: Reporting;
+  @IsNotEmpty()
+  @IsNumber()
+  reportingId: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  customerId: number
 }

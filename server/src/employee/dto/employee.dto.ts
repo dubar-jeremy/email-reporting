@@ -1,6 +1,6 @@
 import { ParseIntPipe } from '@nestjs/common';
 import { Type } from 'class-transformer';
-import { IsEmail, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateEmployeeDto {
   @IsNotEmpty()

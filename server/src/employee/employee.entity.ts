@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Manager } from 'src/manager/manager.entity';
 import { Reporting } from 'src/reporting/reporting.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
@@ -18,7 +19,9 @@ export class Employee {
   })
   email: string;
 
-  @Column()
+  @Column({
+    select: false
+  })
   password: string;
 
   @ManyToOne(() => Manager, (manager) => manager.employee, {

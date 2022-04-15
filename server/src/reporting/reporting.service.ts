@@ -11,7 +11,7 @@ export class ReportingService {
     private reportingRepository: Repository<Reporting>,
   ) {}
 
-  async create(employee: Employee): Promise<Reporting> {
+  create(employee: Employee): Promise<Reporting> {
 
     const reporting = this.reportingRepository.create({
       employee: employee,
@@ -22,5 +22,13 @@ export class ReportingService {
 
   findAll(): Promise<Reporting[]> {
     return this.reportingRepository.find();
+  }
+
+  findOne(reportingId: number): Promise<Reporting> {
+    return this.reportingRepository.findOneOrFail({
+      where: {
+        id: reportingId,
+      },
+    });
   }
 }
