@@ -1,11 +1,13 @@
-import { Body, ConflictException, Controller, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
+import { Body, ConflictException, Controller, Get, NotFoundException, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/authentication/jwt-auth.guard';
 import { ManagerService } from 'src/manager/manager.service';
 import {AddManagerDto, CreateEmployeeDto, GetEmployeeByIdDto } from './dto/employee.dto';
 import { Employee } from './employee.entity';
 import { EmployeeService } from './employee.service';
 
 @ApiTags('employee')
+@UseGuards(JwtAuthGuard)
 @Controller('employee')
 export class EmployeeController {
   constructor(private employeeService: EmployeeService, private managerService: ManagerService) {}

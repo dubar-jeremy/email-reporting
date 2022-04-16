@@ -1,11 +1,13 @@
-import { Body, Controller, NotFoundException, Post } from '@nestjs/common';
+import { Body, Controller, NotFoundException, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/authentication/jwt-auth.guard';
 import { CustomerService } from 'src/customer/customer.service';
 import { ReportingService } from 'src/reporting/reporting.service';
 import { CreateTaskDto } from './dto/task.dto';
 import { TaskService } from './task.service';
 
 @ApiTags('task')
+@UseGuards(JwtAuthGuard)
 @Controller('task')
 export class TaskController {
   constructor(private taskService: TaskService, private reportingService: ReportingService, private customerService: CustomerService) {}

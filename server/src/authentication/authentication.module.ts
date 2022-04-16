@@ -6,6 +6,7 @@ import { EmployeeModule } from "src/employee/employee.module";
 import { AuthenticationService } from "./authentication.service";
 import { AuthenticationController } from "./authentication.controller";
 import { jwtConstants } from './constants';
+import { JwtStrategy } from "./jwt.strategy";
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { jwtConstants } from './constants';
       signOptions: { expiresIn: "24h" },
     }),
   ],
-  providers: [AuthenticationService, LocalStrategy],
+  providers: [AuthenticationService, LocalStrategy, JwtStrategy],
   controllers: [AuthenticationController],
 })
 export class AuthenticationModule {}

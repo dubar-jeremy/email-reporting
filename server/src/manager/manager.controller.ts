@@ -1,9 +1,11 @@
-import { Body, ConflictException, Controller, Get, Post } from '@nestjs/common';
+import { Body, ConflictException, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/authentication/jwt-auth.guard';
 import { CreateManagerDto } from './dto/manager.dto';
 import { ManagerService } from './manager.service';
 
 @ApiTags('manager')
+@UseGuards(JwtAuthGuard)
 @Controller('manager')
 export class ManagerController {
   constructor(private managerService: ManagerService) {}
