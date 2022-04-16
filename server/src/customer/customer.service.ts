@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Customer } from './customer.entity';
-import { CreateCustomerDto } from './dto/customer.dto';
 
 @Injectable()
 export class CustomerService {

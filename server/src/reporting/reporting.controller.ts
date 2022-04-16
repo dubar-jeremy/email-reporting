@@ -1,7 +1,7 @@
 import { Body, Controller, Get, NotFoundException, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/authentication/jwt-auth.guard';
-import { EmployeeService } from 'src/employee/employee.service';
+import { JwtAuthGuard } from '../../src/authentication/jwt-auth.guard';
+import { EmployeeService } from '../../src/employee/employee.service';
 import { CreateEmployeeReportingDo } from './dto/reporting.dto';
 import { ReportingService } from './reporting.service';
 

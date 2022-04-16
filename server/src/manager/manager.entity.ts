@@ -1,4 +1,4 @@
-import { Employee } from 'src/employee/employee.entity';
+import { Employee } from '../../src/employee/employee.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()

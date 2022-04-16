@@ -1,8 +1,8 @@
 import { Body, Controller, NotFoundException, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/authentication/jwt-auth.guard';
-import { CustomerService } from 'src/customer/customer.service';
-import { ReportingService } from 'src/reporting/reporting.service';
+import { JwtAuthGuard } from '../../src/authentication/jwt-auth.guard';
+import { CustomerService } from '../../src/customer/customer.service';
+import { ReportingService } from '../../src/reporting/reporting.service';
 import { CreateTaskDto } from './dto/task.dto';
 import { TaskService } from './task.service';
 

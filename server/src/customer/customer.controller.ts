@@ -1,6 +1,6 @@
 import { Body, ConflictException, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/authentication/jwt-auth.guard';
+import { JwtAuthGuard } from '../../src/authentication/jwt-auth.guard';
 import { Customer } from './customer.entity';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/customer.dto';
