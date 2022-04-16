@@ -1,7 +1,5 @@
 import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-
-
 export class CreateTaskDto {
   @IsNotEmpty()
   @IsString()
@@ -21,5 +19,5 @@ export class CreateTaskDto {
 
   @IsNotEmpty()
   @IsNumber()
-  customerId: number
+  customerId: number;
 }

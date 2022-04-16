@@ -21,7 +21,7 @@ export class CreateEmployeeDto {
 export class GetEmployeeByIdDto {
   @IsInt()
   @Type(() => Number)
-  employeeId: number
+  employeeId: number;
 }
 
 export class AddManagerDto {

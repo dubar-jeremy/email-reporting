@@ -17,10 +17,9 @@ export class ReportingController {
       const employee = await this.employeeService.findOne(employeeId);
 
       return this.reportingService.create(employee);
-    }catch (error: any){
-      throw new NotFoundException("Employee does not exists");
+    } catch (error: any) {
+      throw new NotFoundException('Employee does not exists');
     }
-
   }
 
   @Get()

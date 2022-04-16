@@ -12,14 +12,13 @@ export class CustomerController {
   constructor(private customerService: CustomerService) {}
 
   @Post()
-  async create(@Body() {name: customer}: CreateCustomerDto): Promise<Customer> {
+  async create(@Body() { name: customer }: CreateCustomerDto): Promise<Customer> {
     try {
-
-   return await this.customerService.create(customer);
-    }catch(error){   
-     if(error.code === 'ER_DUP_ENTRY'){
-      throw new ConflictException('Customer already exists');
-     }
+      return await this.customerService.create(customer);
+    } catch (error) {
+      if (error.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('Customer already exists');
+      }
     }
   }
 

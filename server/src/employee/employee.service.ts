@@ -24,14 +24,11 @@ export class EmployeeService {
     });
   }
 
-
   async addManager(employee: Employee, manager: Manager): Promise<Employee> {
-  
-      employee.manager = manager;
-  
-      return this.employeeRepository.save(employee);
-  }
+    employee.manager = manager;
 
+    return this.employeeRepository.save(employee);
+  }
 
   async getAllEmployees(): Promise<Employee[]> {
     return this.employeeRepository.find();
@@ -51,7 +48,6 @@ export class EmployeeService {
     return false;
   }
 
-  
   async findOne(employeeId: number): Promise<Employee> {
     return await this.employeeRepository.findOneOrFail({
       where: {
@@ -60,7 +56,6 @@ export class EmployeeService {
     });
   }
 
-  
   async findOneByEmail(email: string): Promise<Employee> {
     return await this.employeeRepository.findOneOrFail({
       where: {

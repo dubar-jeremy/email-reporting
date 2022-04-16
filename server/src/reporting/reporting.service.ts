@@ -12,7 +12,6 @@ export class ReportingService {
   ) {}
 
   create(employee: Employee): Promise<Reporting> {
-
     const reporting = this.reportingRepository.create({
       employee: employee,
     });

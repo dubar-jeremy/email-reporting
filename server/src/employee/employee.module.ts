@@ -10,6 +10,6 @@ import { ManagerService } from '../../src/manager/manager.service';
   imports: [TypeOrmModule.forFeature([Employee, Manager])],
   providers: [EmployeeService, ManagerService],
   controllers: [EmployeeController],
-  exports: [EmployeeService]
+  exports: [EmployeeService],
 })
 export class EmployeeModule {}

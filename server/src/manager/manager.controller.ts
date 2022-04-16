@@ -12,12 +12,12 @@ export class ManagerController {
 
   @Post()
   async create(@Body() manager: CreateManagerDto) {
-    try {
+    try {
       return await this.managerService.create(manager);
-    }catch(error: any) {
-      if(error.code === 'ER_DUP_ENTRY'){
+    } catch (error: any) {
+      if (error.code === 'ER_DUP_ENTRY') {
         throw new ConflictException('Manager already exists');
-       }
+      }
     }
   }
 

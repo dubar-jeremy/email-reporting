@@ -7,7 +7,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  app.useGlobalPipes(new ValidationPipe({ transform: true}));
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
   const documentSwaggerConfig = new DocumentBuilder().build();
   const document = SwaggerModule.createDocument(app, documentSwaggerConfig);
   SwaggerModule.setup('swagger', app, document);

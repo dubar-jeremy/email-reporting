@@ -8,7 +8,7 @@ import { Manager } from './manager.entity';
 export class ManagerService {
   constructor(@InjectRepository(Manager) private managerRepository: Repository<Manager>) {}
 
-   create(manager: Partial<Employee>): Promise<Manager> {
+  create(manager: Partial<Employee>): Promise<Manager> {
     return this.managerRepository.save(manager);
   }
 
@@ -16,7 +16,7 @@ export class ManagerService {
     return this.managerRepository.find();
   }
 
-   findOne(id: number): Promise<Manager> {
+  findOne(id: number): Promise<Manager> {
     return this.managerRepository.findOneOrFail(id);
   }
 }

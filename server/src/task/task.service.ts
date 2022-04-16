@@ -10,7 +10,7 @@ export class TaskService {
     private taskRepository: Repository<Task>,
   ) {}
 
- create(task: Partial<Task>): Promise<Task> {
+  create(task: Partial<Task>): Promise<Task> {
     return this.taskRepository.save(task);
   }
 
