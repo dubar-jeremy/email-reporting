@@ -59,4 +59,13 @@ export class EmployeeService {
       },
     });
   }
+
+  
+  async findOneByEmail(email: string): Promise<Employee> {
+    return await this.employeeRepository.findOneOrFail({
+      where: {
+        email: email,
+      },
+    });
+  }
 }
