@@ -10,8 +10,13 @@ export class TaskService {
     private taskRepository: Repository<Task>,
   ) {}
 
- async create(task: Partial<Task>): Promise<Task> {
+ create(task: Partial<Task>): Promise<Task> {
+    return this.taskRepository.save(task);
+  }
 
-    return await this.taskRepository.save(task);
+  findOne(taskId: number): Promise<Task> {
+    return this.taskRepository.findOneOrFail({
+      where: { id: taskId },
+    });
   }
 }
