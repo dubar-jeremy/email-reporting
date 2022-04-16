@@ -1,6 +1,5 @@
 import { Body, ConflictException, Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { type } from 'os';
 import { Customer } from './customer.entity';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/customer.dto';
@@ -13,8 +12,9 @@ export class CustomerController {
   @Post()
   async create(@Body() {name: customer}: CreateCustomerDto): Promise<Customer> {
     try {
-      return await this.customerService.create(customer);
-    }catch(error){
+
+   return await this.customerService.create(customer);
+    }catch(error){   
      if(error.code === 'ER_DUP_ENTRY'){
       throw new ConflictException('Customer already exists');
      }

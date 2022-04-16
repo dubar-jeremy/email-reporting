@@ -4,13 +4,11 @@ import { Employee } from './employee.entity';
 import { EmployeeController } from './employee.controller';
 import { EmployeeService } from './employee.service';
 import { Manager } from 'src/manager/manager.entity';
-import { LocalStrategy } from 'src/authentication/local.strategy';
-import { AuthenticationService } from 'src/authentication/authentication.service';
 import { ManagerService } from 'src/manager/manager.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Employee, Manager])],
-  providers: [EmployeeService, LocalStrategy, AuthenticationService, ManagerService],
+  providers: [EmployeeService, ManagerService],
   controllers: [EmployeeController],
   exports: [EmployeeService]
 })
