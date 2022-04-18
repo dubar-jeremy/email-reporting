@@ -11,7 +11,6 @@ export const UseFindAllCustomers = () => {
   return useQuery(['UseFindAllCustomers'], getCustomers);
 };
 
-
 export const UseCreateCustomer = (invalidateQuery: boolean = false, queryKey: string = '') => {
   const queryClient = useQueryClient();
 
@@ -23,7 +22,6 @@ export const UseCreateCustomer = (invalidateQuery: boolean = false, queryKey: st
     },
   });
 };
-
 
 // Employee
 export const useCreateEmployee = (invalidateQuery: boolean = false, queryKey: string = '') => {

@@ -12,4 +12,4 @@ export const postEmployee = async (data) => await API.post('/employee', data);
 
 // reporting
 export const postReporting = async (data) => await API.post('/reporting', data);
-export const getReportings = async ()  => await API.get('/reporting');
+export const getReportings = async () => await API.get('/reporting');

@@ -3,8 +3,8 @@ export interface Props {
 }
 
 export interface FormValues {
-  lastName: string,
-  firstName: string,
-  email: string,
-  password: string
+  lastName: string;
+  firstName: string;
+  email: string;
+  password: string;
 }

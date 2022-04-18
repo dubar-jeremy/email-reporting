@@ -29,7 +29,7 @@ export class AuthenticationController {
     const employee = await this.employeeService.create(req.employee[0]);
     const manager = await this.managerService.create(req.manager[0]);
     req.customer.map(async (customer: any) => {
-     await this.customerService.create(customer.name);
+      await this.customerService.create(customer.name);
     });
 
     await this.employeeService.addManager(employee, manager);
