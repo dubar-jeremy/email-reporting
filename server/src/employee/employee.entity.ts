@@ -1,6 +1,6 @@
-import { Manager } from '../../src/manager/manager.entity';
-import { Reporting } from '../../src/reporting/reporting.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
+import { Manager } from '../manager/manager.entity';
+import { Reporting } from '../reporting/reporting.entity';
 
 @Entity()
 export class Employee {

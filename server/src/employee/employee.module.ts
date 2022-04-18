@@ -3,8 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Employee } from './employee.entity';
 import { EmployeeController } from './employee.controller';
 import { EmployeeService } from './employee.service';
-import { Manager } from '../../src/manager/manager.entity';
-import { ManagerService } from '../../src/manager/manager.service';
+import { ManagerService } from '../manager/manager.service';
+import { Manager } from '../manager/manager.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Employee, Manager])],

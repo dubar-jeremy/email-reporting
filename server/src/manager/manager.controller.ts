@@ -1,6 +1,6 @@
 import { Body, ConflictException, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../../src/authentication/jwt-auth.guard';
+import { JwtAuthGuard } from '../authentication/jwt-auth.guard';
 import { CreateManagerDto } from './dto/manager.dto';
 import { ManagerService } from './manager.service';
 

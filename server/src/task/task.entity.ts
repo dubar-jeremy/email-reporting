@@ -1,6 +1,6 @@
-import { Customer } from '../../src/customer/customer.entity';
-import { Reporting } from '../../src/reporting/reporting.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Customer } from '../customer/customer.entity';
+import { Reporting } from '../reporting/reporting.entity';
 
 @Entity()
 export class Task {

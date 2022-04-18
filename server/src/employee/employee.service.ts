@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Employee } from './employee.entity';
 import * as bcrypt from 'bcrypt';
-import { Manager } from '../../src/manager/manager.entity';
+import { Manager } from '../manager/manager.entity';
 
 @Injectable()
 export class EmployeeService {
@@ -30,7 +30,7 @@ export class EmployeeService {
     return this.employeeRepository.save(employee);
   }
 
-  async getAllEmployees(): Promise<Employee[]> {
+  async findAll(): Promise<Employee[]> {
     return this.employeeRepository.find();
   }
 

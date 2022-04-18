@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Employee } from '../../src/employee/employee.entity';
 import { Repository } from 'typeorm';
+import { Employee } from '../employee/employee.entity';
 import { Manager } from './manager.entity';
 
 @Injectable()
@@ -18,5 +18,13 @@ export class ManagerService {
 
   findOne(id: number): Promise<Manager> {
     return this.managerRepository.findOneOrFail(id);
+  }
+
+  findOneByEmail(email: string): Promise<Manager> {
+    return this.managerRepository.findOneOrFail({
+      where: {
+        email: email,
+      },
+    });
   }
 }

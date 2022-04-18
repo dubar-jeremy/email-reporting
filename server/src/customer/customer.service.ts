@@ -11,6 +11,7 @@ export class CustomerService {
   ) {}
 
   async create(customer: string): Promise<Customer> {
+    console.log(customer);
     return await this.customerRepository.save({ name: customer });
   }
 
@@ -18,9 +19,15 @@ export class CustomerService {
     return this.customerRepository.find();
   }
 
-  findOne(customerId): Promise<Customer> {
+  findOne(customerId: number): Promise<Customer> {
     return this.customerRepository.findOneOrFail({
       where: { id: customerId },
+    });
+  }
+
+  findOneByName(name: string): Promise<Customer> {
+    return this.customerRepository.findOneOrFail({
+      where: { name: name },
     });
   }
 }

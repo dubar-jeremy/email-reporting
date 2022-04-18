@@ -10,8 +10,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../../src/authentication/jwt-auth.guard';
-import { ManagerService } from '../../src/manager/manager.service';
+import { JwtAuthGuard } from '../authentication/jwt-auth.guard';
+import { ManagerService } from '../manager/manager.service';
 import { AddManagerDto, CreateEmployeeDto, GetEmployeeByIdDto } from './dto/employee.dto';
 import { Employee } from './employee.entity';
 import { EmployeeService } from './employee.service';
@@ -23,7 +23,7 @@ export class EmployeeController {
   constructor(private employeeService: EmployeeService, private managerService: ManagerService) {}
 
   @Post()
-  async createEmployee(@Body() createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
+  async create(@Body() createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
     try {
       return await this.employeeService.create(createEmployeeDto);
     } catch (error: any) {
@@ -34,8 +34,8 @@ export class EmployeeController {
   }
 
   @Get()
-  getAllEmployees(): Promise<Employee[]> {
-    return this.employeeService.getAllEmployees();
+  findAll(): Promise<Employee[]> {
+    return this.employeeService.findAll();
   }
 
   /**
