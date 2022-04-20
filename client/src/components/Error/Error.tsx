@@ -1,9 +1,9 @@
-import { Snackbar } from "@mui/material";
-import { useState } from "react";
+import { Snackbar } from '@mui/material';
+import { useState } from 'react';
 
 const Error = (props: any) => {
   const [open, setOpen] = useState<boolean>(true);
-  
+
   const handleClose = () => {
     setOpen(false);
     props.setDisplayError(false);
@@ -16,5 +16,5 @@ const Error = (props: any) => {
       onClose={handleClose}
     />
   );
-}
+};
 export default Error;
