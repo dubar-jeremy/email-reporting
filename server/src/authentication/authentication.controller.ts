@@ -1,4 +1,6 @@
 import { Controller, Request, Post, UseGuards, Body, ConflictException } from '@nestjs/common';
+import { Customer } from 'src/customer/customer.entity';
+import { CreateCustomerDto } from 'src/customer/dto/customer.dto';
 import { CustomerService } from '../customer/customer.service';
 import { EmployeeService } from '../employee/employee.service';
 import { ManagerService } from '../manager/manager.service';
@@ -28,7 +30,7 @@ export class AuthenticationController {
   async register(@Body() req) {
     const employee = await this.employeeService.create(req.employee[0]);
     const manager = await this.managerService.create(req.manager[0]);
-    req.customer.map(async (customer: any) => {
+    req.customer.map(async (customer: CreateCustomerDto) => {
       await this.customerService.create(customer.name);
     });
 

@@ -1,9 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getCustomers, signIn, postCustomer, postEmployee } from '../services/api/api';
+import { getCustomers, signIn, postCustomer, postEmployee, register } from '../services/api/api';
 
 // Authentication
 export const UseLogin = () => {
   return useMutation(['UseLogin'], async (data: any) => await signIn(data));
+};
+
+export const UseRegister = () => {
+  return useMutation(['UseRegister'], async (data: any) => await register(data));
 };
 
 // Customer
