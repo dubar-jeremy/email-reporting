@@ -30,10 +30,7 @@ export class AuthenticationController {
   async register(@Body() req) {
     const employee = await this.employeeService.create(req.employee[0]);
     const manager = await this.managerService.create(req.manager[0]);
-    req.customer.map(async (customer: CreateCustomerDto) => {
-      await this.customerService.create(customer.name);
-    });
-
+    
     await this.employeeService.addManager(employee, manager);
 
     return this.authenticationService.register(employee);

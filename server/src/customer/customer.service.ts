@@ -11,7 +11,6 @@ export class CustomerService {
   ) {}
 
   async create(customer: string): Promise<Customer> {
-    console.log(customer);
     return await this.customerRepository.save({ name: customer });
   }
 

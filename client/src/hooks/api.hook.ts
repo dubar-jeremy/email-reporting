@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getCustomers, signIn, postCustomer, postEmployee, register } from '../services/api/api';
 
@@ -7,7 +8,11 @@ export const UseLogin = () => {
 };
 
 export const UseRegister = () => {
-  return useMutation(['UseRegister'], async (data: any) => await register(data));
+  return useMutation(['UseRegister'], async (data: any) => await register(data), {
+    onSuccess: (data: any) => {
+      Cookies.set('emailReporting', data.data.access_token);
+    },
+  });
 };
 
 // Customer

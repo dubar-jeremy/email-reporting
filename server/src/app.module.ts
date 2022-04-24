@@ -9,6 +9,9 @@ import { EmployeeModule } from './employee/employee.module';
 import { ReportingModule } from './reporting/reporting.module';
 import { TaskModule } from './task/task.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { MailModule } from './mail/mail.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { mailConfig } from './configurations/mail.config';
 
 @Module({
   imports: [
@@ -28,12 +31,23 @@ import { AuthenticationModule } from './authentication/authentication.module';
         synchronize: true,
       }),
     }),
+    MailerModule.forRootAsync({
+      imports: [ConfigModule.forRoot({
+        load: [mailConfig],
+      })
+    ],
+    inject: [mailConfig.KEY],
+      useFactory: (config) => ({
+        ...config,
+      }),
+  }),
     ManagerModule,
     EmployeeModule,
     ReportingModule,
     CustomerModule,
     TaskModule,
     AuthenticationModule,
+    MailModule,
   ],
 })
 export class AppModule {}
