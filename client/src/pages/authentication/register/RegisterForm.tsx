@@ -8,7 +8,7 @@ import {
 import { Button, TextField } from '@mui/material';
 import { UseRegister } from '../../../hooks/api.hook';
 import { initialValues } from './formik/initialValues';
-import { validationSchema } from './validations/register.validation';
+import { validationSchema } from './validation/register.validation';
 
 const RegisterForm: React.FC<Props> = ({ onChangeForm }) => {
   const { mutate } = UseRegister();
@@ -110,7 +110,7 @@ const RegisterForm: React.FC<Props> = ({ onChangeForm }) => {
       <Button color='primary' variant='contained' type='submit'>
         Submit
       </Button>
-      <span onClick={onChangeForm}>Créer un compte</span>
+      <span onClick={onChangeForm}>Se connecter</span>
     </form>
   );
 };

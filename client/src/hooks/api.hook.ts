@@ -4,13 +4,20 @@ import { getCustomers, signIn, postCustomer, postEmployee, register } from '../s
 
 // Authentication
 export const UseLogin = () => {
-  return useMutation(['UseLogin'], async (data: any) => await signIn(data));
+  return useMutation(['UseLogin'], async (data: any) => await signIn(data), {
+    onSuccess: (data: any) => {
+      Cookies.set('emailReporting', data.data.access_token);
+      // reload page
+      window.location.reload();
+    },
+  });
 };
 
 export const UseRegister = () => {
   return useMutation(['UseRegister'], async (data: any) => await register(data), {
     onSuccess: (data: any) => {
       Cookies.set('emailReporting', data.data.access_token);
+      window.location.reload();
     },
   });
 };
@@ -39,7 +46,6 @@ export const useCreateEmployee = (invalidateQuery: boolean = false, queryKey: st
   return useMutation(['useCreateEmployee'], async (data: any) => await postEmployee(data), {
     onSuccess: () => {
       if (invalidateQuery && queryKey.length > 0) {
-        console.log('test');
         queryClient.invalidateQueries(queryKey);
       }
     },

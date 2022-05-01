@@ -4,8 +4,3 @@ export const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string().required('Required'),
 });
-
-export const initialValues = {
-  email: '',
-  password: '',
-};

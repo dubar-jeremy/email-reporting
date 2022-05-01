@@ -3,10 +3,6 @@ import Layout from '../components/Layout/Layout';
 import Authentication from '../pages/authentication/Authentication';
 import Cookies from 'js-cookie';
 const Router: React.FC = (): JSX.Element => {
-  Cookies.get('emailReporting')
-    ? console.log('emailReporting')
-    : console.log('no token');
-
   const PublicRoutes = (): JSX.Element => {
     return (
       <BrowserRouter>

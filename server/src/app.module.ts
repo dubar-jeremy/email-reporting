@@ -32,15 +32,16 @@ import { mailConfig } from './configurations/mail.config';
       }),
     }),
     MailerModule.forRootAsync({
-      imports: [ConfigModule.forRoot({
-        load: [mailConfig],
-      })
-    ],
-    inject: [mailConfig.KEY],
+      imports: [
+        ConfigModule.forRoot({
+          load: [mailConfig],
+        }),
+      ],
+      inject: [mailConfig.KEY],
       useFactory: (config) => ({
         ...config,
       }),
-  }),
+    }),
     ManagerModule,
     EmployeeModule,
     ReportingModule,

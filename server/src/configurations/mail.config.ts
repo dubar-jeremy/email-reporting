@@ -8,8 +8,8 @@ export const mailConfig = registerAs('mail', () => ({
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASSWORD,
     },
-},
-defaults: {
+  },
+  defaults: {
     from: `"No Reply" ${process.env.MAIL_USER}`,
-},
+  },
 }));

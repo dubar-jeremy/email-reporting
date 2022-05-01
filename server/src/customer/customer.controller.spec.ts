@@ -44,14 +44,13 @@ describe('CustomerController', () => {
   });
 
   describe('On creating user', () => {
-
     const customer = {
       name: 'John Doe',
     };
 
-    const test = {
+    const test = {
       name: 'John Doe',
-    }
+    };
 
     it('It should call customerService.create', async () => {
       await customerController.create(customer);

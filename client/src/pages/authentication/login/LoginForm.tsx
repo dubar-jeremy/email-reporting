@@ -1,9 +1,10 @@
 import { useFormik } from 'formik';
-import { FormValues, Props } from './login.interface';
+import { FormValues, Props } from './interface/login.interface';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { UseLogin } from '../../../hooks/api.hook';
-import { initialValues, validationSchema } from './login.formik';
+import { initialValues } from './formik/initialValues';
+import { validationSchema } from './validation/login.validation';
 
 const LoginForm: React.FC<Props> = ({ onChangeForm }) => {
   const { mutate } = UseLogin();
